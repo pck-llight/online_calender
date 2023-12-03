@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {IoMdMenu} from "react-icons/io";
-import Memo from "./components/Memo";
 import Menu from "./Menu";
 import CalendarContanier from "./Calendar";
+import Callender_test from "./Callender_test";
 
 
 
@@ -27,7 +27,7 @@ const NavTopMenuButton = styled.button`
   margin: 0;
   padding: 0;
   border: none;
-  background: none; 
+  background: none;
   margin-left: 40px;
   background-color: #fff;
 `
@@ -68,10 +68,10 @@ function App() {
       </Header>
       <div style={{
         display: "flex"
-
       }}>
         <Menu menu={isMenuOn}/>
-        <CalendarContanier />
+        <CalendarContanier menu={isMenuOn}/>
+        {/*<Callender_test/>*/}
       </div>
     </>
   );

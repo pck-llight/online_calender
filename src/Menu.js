@@ -6,7 +6,7 @@ import {PiTagFill} from "react-icons/pi";
 
 //사이드 메뉴
 const SideMenu = styled.div`
-  width: 400px;
+  width: 410px;
   height: calc(100vh - 80px);
   overflow-y: hidden;
   background-color: #ffffff;
@@ -99,7 +99,8 @@ function Menu(props){
     <>
       <SideMenu style={{
         transform: props.menu ? "translateX(0px)" : "translateX(-410px)",
-        transition: "all .5s"
+        width: props.menu ? "420px" : "0px",
+        transition: "all .5s",
       }}>
         <MenuTitle>
           메뉴
