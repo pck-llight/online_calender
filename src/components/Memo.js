@@ -18,12 +18,12 @@ const MemoCard = styled.div`
 `
 //메모 삭제 버튼
 const MemoDelButton = styled.button`
-  width: 24px;
-  height: 24px;
-  background-color: none;
+  position: absolute;
+  background-color: #ccd0da;
   border: none;
-  align-content: center;
-  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px
 `
 //메모 제목
 const MemoTitle = styled.h3`
@@ -58,7 +58,12 @@ function Memo(){
           <MemoTitle>제목</MemoTitle><br/>
           <MemoContent>내용</MemoContent><br/>
           <Memoday>2023.12.12</Memoday><br/>
-          <MemoDelButton><MdDelete size={24}/></MemoDelButton>
+          <MemoDelButton style={{
+            transform: "translateX(290px) translateY(95px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}><MdDelete size={24}/></MemoDelButton>
         </MemoCard>
     </>
   )
