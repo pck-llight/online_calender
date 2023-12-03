@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {IoMdMenu} from "react-icons/io";
 import Memo from "./components/Memo";
 import Menu from "./Menu";
+import CalendarContanier from "./Calendar";
 
 
 
@@ -50,22 +51,28 @@ const Month = styled.b`
 `
 
 function App() {
+  const [isMenuOn, setIsMenuOn] = useState(false);
 
   //햄버거 메뉴 버튼 기능
-  function menu(){
-    console.log("메뉴 버튼 눌림")
-
+  function menuOnOff(){
+    console.log("메뉴 버튼 눌림" +isMenuOn)
+    setIsMenuOn(!isMenuOn)
   }
 
   //전체 html
   return(
     <>
       <Header>
-        <NavTopMenuButton onClick={menu}><IoMdMenu size={28} /></NavTopMenuButton>
+        <NavTopMenuButton onClick={menuOnOff}><IoMdMenu size={28} /></NavTopMenuButton>
         <Year>2023년</Year><Month>11월</Month>
       </Header>
-      <Menu>
-      </Menu>
+      <div style={{
+        display: "flex"
+
+      }}>
+        <Menu menu={isMenuOn}/>
+        <CalendarContanier />
+      </div>
     </>
   );
 }

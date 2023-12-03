@@ -9,7 +9,6 @@ const SideMenu = styled.div`
   width: 400px;
   height: calc(100vh - 80px);
   overflow-y: hidden;
-  //height: calc(100% - 80px);
   background-color: #ffffff;
 `
 //메모 컨테이너
@@ -41,7 +40,7 @@ const MemoContainer = styled.div`
   overflow-y: scroll;
   &::-webkit-scrollbar-thumb{
     background-color: #00000032;
-    border-radius: 1.5px;
+    border-radius: 999px;
   }
   &::-webkit-scrollbar{
     background-color: none;
@@ -72,7 +71,7 @@ const MenuCalenderButton =styled.div`
     align-items: center;
     width: 273px;
     border-radius: 999px;
-    background-color: #EBEEFE;
+    //background-color: #EBEEFE;
     color: black;
     text-align: left;
     display: flex;
@@ -93,11 +92,15 @@ const Hr = styled.hr`
   margin-right: auto;
   
 `
-function Menu(){
+function Menu(props){
+
 
   return(
     <>
-      <SideMenu>
+      <SideMenu style={{
+        transform: props.menu ? "translateX(0px)" : "translateX(-410px)",
+        transition: "all .5s"
+      }}>
         <MenuTitle>
           메뉴
           <MenuCalenderButton><HiCalendar size={24} color={"#3654F4"}/>달력</MenuCalenderButton>
@@ -106,6 +109,10 @@ function Menu(){
         </MenuTitle>
         <Hr/>
         <MemoContainer>
+          <Memo title = "adkdkadkdkadkdkadkdk" content = "ajkdassssssssssssssssssssssssssssssssssssssssjklafjdafkjdakfjakfjajfkajffjdsakljfkldsafkldjalfjdl"/>
+          <Memo/>
+          <Memo/>
+          <Memo/>
           <Memo/>
           <Memo/>
           <Memo/>
