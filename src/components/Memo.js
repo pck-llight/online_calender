@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {MdDelete} from "react-icons/md";
+import React from "react";
 
 //메모 카드
 const MemoCard = styled.div`
@@ -7,18 +8,22 @@ const MemoCard = styled.div`
   height: 131px;
   border-radius: 16px;
   background-color: #F3F5F6;
-  //border: solid 1px blue;
   border: none;
   padding: 0;
   margin: 0;
   margin-left: 40px;
-  margin-top: 24px;
+  margin-bottom: 24px;
+  display: inline-flex;
+  //align-items: ;
 `
 //메모 삭제 버튼
 const MemoDelButton = styled.button`
-  width: 330px;
-  height: 131px;
-  margin-left: 20px;
+  width: 24px;
+  height: 24px;
+  background-color: none;
+  border: none;
+  align-content: center;
+  align-items: center;
 `
 //메모 제목
 const MemoTitle = styled.h3`
@@ -44,18 +49,19 @@ const Memoday = styled.p`
 `
 
 
-function Menu(){
+function Memo(){
 
   //메뉴 html
   return(
     <>
         <MemoCard>
-          <MemoTitle>제목</MemoTitle>
-          <MemoContent>내용</MemoContent>
-          <Memoday>2023.12.12</Memoday>
+          <MemoTitle>제목</MemoTitle><br/>
+          <MemoContent>내용</MemoContent><br/>
+          <Memoday>2023.12.12</Memoday><br/>
+          <MemoDelButton><MdDelete size={24}/></MemoDelButton>
         </MemoCard>
     </>
   )
 }
 
-export default Menu;
+export default Memo;

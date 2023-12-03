@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {IoMdMenu} from "react-icons/io";
-import Menu from "./components/Menu";
+import Memo from "./components/Memo";
+import Menu from "./Menu";
 
-//메뉴 칸
-const SideMenu = styled.div`
-  width: 400px;
-  height: 100%;
-  background-color: #fff;
-`
+
 
 //헤더 디자인
 const Header = styled.header`
@@ -16,10 +12,10 @@ const Header = styled.header`
   height: 80px;
   position: relative;
   top: 0;
-  background-color: white;
+  background-color: #FFF;
   display: flex;
   margin: 0;
-  
+  align-items: center;
 `;
 
 //햄버거 메뉴 버튼 디자인
@@ -32,7 +28,6 @@ const NavTopMenuButton = styled.button`
   border: none;
   background: none; 
   margin-left: 40px;
-  margin-top: 26px;
   background-color: #fff;
 `
 //년도 디자인
@@ -41,7 +36,6 @@ const Year = styled.div`
   font-family: suit-bold;
   margin: 0;
   padding: 0;
-  margin-top: 26px;
   margin-left: 48px;
   color: #BBC0C3;
 `
@@ -52,7 +46,6 @@ const Month = styled.b`
   margin: 0;
   padding: 0;
   color: #3654F4;
-  margin-top: 26px;
   margin-left: 12px;
 `
 
@@ -71,16 +64,8 @@ function App() {
         <NavTopMenuButton onClick={menu}><IoMdMenu size={28} /></NavTopMenuButton>
         <Year>2023년</Year><Month>11월</Month>
       </Header>
-      <SideMenu>
-        <Menu/>
-        <Menu/>
-        <Menu/>
-        <Menu/>
-        <Menu/>
-        <Menu/>
-        <Menu/>
-        <Menu/>
-      </SideMenu>
+      <Menu>
+      </Menu>
     </>
   );
 }
