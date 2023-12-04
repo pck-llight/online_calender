@@ -51,7 +51,8 @@ const Month = styled.b`
 `
 
 function App() {
-  const [isMenuOn, setIsMenuOn] = useState(false);
+  const [isMenuOn, setIsMenuOn] = useState(true);
+  const [selectedDate, setSelectedDate] = useState(new Date()); // 추가: 선택된 날짜 상태
 
   //햄버거 메뉴 버튼 기능
   function menuOnOff(){
@@ -64,13 +65,13 @@ function App() {
     <>
       <Header>
         <NavTopMenuButton onClick={menuOnOff}><IoMdMenu size={28} /></NavTopMenuButton>
-        <Year>2023년</Year><Month>11월</Month>
+        <Year>{selectedDate.getFullYear()}년</Year><Month>{selectedDate.getMonth() + 1}월</Month>
       </Header>
       <div style={{
         display: "flex"
       }}>
         <Menu menu={isMenuOn}/>
-        <CalendarContanier menu={isMenuOn}/>
+        <CalendarContanier menu={isMenuOn} date={selectedDate} setDate={setSelectedDate} />
         {/*<Callender_test/>*/}
       </div>
     </>

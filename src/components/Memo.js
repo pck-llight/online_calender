@@ -5,7 +5,7 @@ import React from "react";
 //메모 카드
 const MemoCard = styled.div`
   width: 330px;
-  height: 1000px;
+  height: 150px;
   border-radius: 16px;
   background-color: #F3F5F6;
   border: none;
@@ -55,9 +55,10 @@ const MemoContent = styled.h4`
 `
 //메모 날짜
 const Memoday = styled.p`
-  color: #BBC0C3;
+  color: #abafb2;
   font-size: 14px;
   margin: 0;
+  font-weight: bold;
 `
 
 
@@ -76,8 +77,19 @@ function Memo(props){
             alignItems: "center",
             justifyContent: "space-between"
           }}>
-            <Memoday>2023.12.12</Memoday><br/>
-            <MemoDelButton><MdDelete size={24}/></MemoDelButton>
+            <Memoday>{props.date}</Memoday><br/>
+            <MemoDelButton onClick={(e)=> {
+              let idx = 0
+              props.post.forEach( e => {
+                if (props.id == e.id){
+                  let a = props.post.slice(0,idx).concat(props.post.slice(idx+1))
+                  props.setpost([...a])
+                  props.post[e.id] = props.post.splice(e.index,1,'')
+                }
+                idx++;
+              }
+              )
+            }}><MdDelete size={24}/></MemoDelButton>
           </div>
         </MemoCard>
     </>

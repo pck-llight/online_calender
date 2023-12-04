@@ -1,7 +1,7 @@
 import Memo from "./components/Memo"
 import styled from "styled-components";
 import {HiCalendar} from "react-icons/hi";
-import React from "react";
+import React, {useState} from "react";
 import {PiTagFill} from "react-icons/pi";
 
 //사이드 메뉴
@@ -92,7 +92,11 @@ const Hr = styled.hr`
   margin-right: auto;
   
 `
+
+//hr 디자인
 function Menu(props){
+  const [post, setpost] = useState([]);
+
 
 
   return(
@@ -106,19 +110,19 @@ function Menu(props){
           메뉴
           <MenuCalenderButton><HiCalendar size={24} color={"#3654F4"}/>달력</MenuCalenderButton>
           <MenuMemoButton><PiTagFill size={24} color={"#F44336"}/>메모 열람</MenuMemoButton>
-          메뉴 목록 <MemoAddButton>추가</MemoAddButton>
+          메뉴 목록 <MemoAddButton onClick={() => {
+            post.push({"title": "sunrint", "content": "wifi is sus", "date": "2023.12.12", "id": post.length? post[post.length-1].id+1: 0})
+            setpost([...post])
+        }}>추가</MemoAddButton>
         </MenuTitle>
         <Hr/>
         <MemoContainer>
-          <Memo title = "adkdkadkdkadkdkadkdk" content = "ajkdassssssssssssssssssssssssssssssssssssssssjklafjdafkjdakfjakfjajfkajffjdsakljfkldsafkldjalfjdl"/>
-          <Memo/>
-          <Memo/>
-          <Memo/>
-          <Memo/>
-          <Memo/>
-          <Memo/>
-          <Memo/>
-          <Memo/>
+          {
+            post.map(e => {
+              console.log(e.id);
+              return <Memo title ={e.title} content ={e.content} date = {e.date} id={e.id} post={post} setpost={setpost}/>
+            })
+          }
         </MemoContainer>
       </SideMenu>
     </>

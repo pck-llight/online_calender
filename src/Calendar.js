@@ -41,6 +41,15 @@ const DateCell = styled.div`
   justify-content: center;
 `
 
+/**
+ *
+ * @param {{
+ *   setSelectedDate: function
+ *   menu: boolean
+ * }} props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Calendar(props){
 
   const [selectedMonth, setSelectedMonth] = useState(new Date());
@@ -48,8 +57,8 @@ function Calendar(props){
 
 
   function GenerateCalendar() {
-    const year = selectedMonth.getFullYear();
-    const month = selectedMonth.getMonth();
+    const year = props.date.getFullYear();
+    const month = props.date.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
@@ -87,8 +96,13 @@ function Calendar(props){
         {
           calendar.map((e) => {
             return <div style={{
+              width:"calc(100vw - 450px)",
               display: "flex",
               textAlign: "center",
+              alignItems:"center",
+              justifyContent:"space-between",
+              padding: "10px"
+
             }}>
               {
                 e.map((e) => {
@@ -102,13 +116,28 @@ function Calendar(props){
         }
       </>
     )
+  }
+  //이전 달로 이동하는 함수
+  function moveToPreviousMonth() {
+    const currentMonth = props.date.getMonth();
+    const newMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+    const newYear = currentMonth === 0 ? props.date.getFullYear() - 1 : props.date.getFullYear();
 
+    props.setDate(new Date(newYear, newMonth));
+  }
+  // 다음 달로 이동하는 함수
+  function moveToNextMonth() {
+    const currentMonth = props.date.getMonth();
+    const newMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+    const newYear = currentMonth === 11 ? props.date.getFullYear() + 1 : props.date.getFullYear();
+
+    props.setDate(new Date(newYear, newMonth));
   }
 
 
   return(
     <CalendarContanier style={{
-      width: props.menu ? "calc(100vw - 410px)" : "100vh",
+      width: props.menu ? "calc(100vw - 410px)" : "100vw",
       display:"flex",
       alignItems:"center",
       justifyContent:"space-between",
@@ -116,9 +145,25 @@ function Calendar(props){
     }}>
       <div style={{
         display:"flex",
+        alignItems:"center",
+        justifyContent:"space-between",
         gap: "20px"
       }}>
-        <SelectDate><IoChevronBackSharp size={24} color={"#828587"}/>{selectedMonth.getMonth() + 1}월 달력<IoChevronForwardSharp size={24} color={"#828587"}/></SelectDate>
+        <SelectDate><IoChevronBackSharp onClick={moveToPreviousMonth} size={24} color={"#828587"}/>{props.date.getMonth() + 1}월 달력<IoChevronForwardSharp onClick={moveToNextMonth} size={24} color={"#828587"}/></SelectDate>
+      </div>
+      <div style={{
+        width:"calc(100vw - 450px)",
+        display:"flex",
+        alignItems:"center",
+        justifyContent: "space-between"
+      }}>
+      <DayOfWeek>일</DayOfWeek>
+      <DayOfWeek>월</DayOfWeek>
+      <DayOfWeek>화</DayOfWeek>
+      <DayOfWeek>수</DayOfWeek>
+      <DayOfWeek>목</DayOfWeek>
+      <DayOfWeek>금</DayOfWeek>
+      <DayOfWeek>토</DayOfWeek>
       </div>
       <GenerateCalendar/>
     </CalendarContanier>
