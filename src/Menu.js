@@ -95,6 +95,7 @@ const Hr = styled.hr`
 
 //hr 디자인
 function Menu(props){
+  //메모 저장 배열(새로고침 하면 사라짐)
   const [post, setpost] = useState([]);
 
 

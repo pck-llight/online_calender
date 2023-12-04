@@ -51,7 +51,9 @@ const Month = styled.b`
 `
 
 function App() {
+  //메뉴 버튼 상태 저장 변수
   const [isMenuOn, setIsMenuOn] = useState(true);
+  //선택 된 년도 저장 변수
   const [selectedDate, setSelectedDate] = useState(new Date()); // 추가: 선택된 날짜 상태
 
   //햄버거 메뉴 버튼 기능

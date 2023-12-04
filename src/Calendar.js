@@ -41,21 +41,12 @@ const DateCell = styled.div`
   justify-content: center;
 `
 
-/**
- *
- * @param {{
- *   setSelectedDate: function
- *   menu: boolean
- * }} props
- * @returns {JSX.Element}
- * @constructor
- */
 function Calendar(props){
-
+  //달 선택 저작 객체
   const [selectedMonth, setSelectedMonth] = useState(new Date());
+
+
   //달력 생성 함수
-
-
   function GenerateCalendar() {
     const year = props.date.getFullYear();
     const month = props.date.getMonth();
@@ -64,14 +55,15 @@ function Calendar(props){
 
     // 현재 날짜를 가져와서 오늘인지 확인
     const today = new Date();
-    const isThisMonth = today.getFullYear() === year && today.getMonth() === month;
+    //오늘이 맞는지 확인
+    const isThisToday = today.getFullYear() === year && today.getMonth() === month;
 
-
-
+    //달력 저장 배열
     const calendar = [];
+    //날짜 카운터
     let dayCounter = 1;
 
-
+    //날짜를 배열에 저장해주는 이중 포문
     for (let i = 0; i < 6; i++) {
       const week = [];
 
@@ -106,7 +98,7 @@ function Calendar(props){
             }}>
               {
                 e.map((e) => {
-                    return <DateCell key={e} isToday={isThisMonth && today.getDate() === e}>{e}</DateCell>
+                    return <DateCell key={e} isToday={isThisToday && today.getDate() === e}>{e}</DateCell>
                   }
                 )
               }
