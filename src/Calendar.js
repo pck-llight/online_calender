@@ -28,12 +28,18 @@ const DayOfWeek = styled.div`
   font-size: 24px;
 `
 
-
+//날짜 칸 디자인 -> 만약 오늘이라면 배경색, 글자색을 수정한다.
 const DateCell = styled.div`
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-    `
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  background-color: ${({ isToday }) => (isToday ? "#3654F4" : "transparent")};
+  color: ${({ isToday }) => (isToday ? "#FFF" : "#000")};
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 function Calendar(props){
 
@@ -46,7 +52,11 @@ function Calendar(props){
     const month = selectedMonth.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
+
+    // 현재 날짜를 가져와서 오늘인지 확인
     const today = new Date();
+    const isThisMonth = today.getFullYear() === year && today.getMonth() === month;
+
 
 
     const calendar = [];
@@ -82,7 +92,7 @@ function Calendar(props){
             }}>
               {
                 e.map((e) => {
-                    return <DateCell>{e}</DateCell>
+                    return <DateCell key={e} isToday={isThisMonth && today.getDate() === e}>{e}</DateCell>
                   }
                 )
               }
